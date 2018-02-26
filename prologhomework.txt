@@ -1,0 +1,142 @@
+progenitor(X,Y):-father(X,Y).
+progenitor(X,Y):-mother(X,Y).
+grandfather(A,N):-progenitor(A,F),progenitor(F,N),male(A).
+grandmother(A,N):-progenitor(A,F),progenitor(F,N),female(A).
+brother(X,Y):-progenitor(P,X),progenitor(P,Y),male(X),not(X==Y).
+sister(X,Y):-progenitor(P,X),progenitor(P,Y),female(X),not(X==Y).
+father(leonildo,atico).% atico is my father and leonildo my granfather
+mother(ilza,atico).% ilza is my grandmother
+father(leonildo,carlos).% carlos is my uncle
+mother(ilza,carlos).
+father(leonildo,katia).% katia is my aunt
+mother(leonildo,katia).
+father(idalino,vera).% vera is my mom and idalino my grandfather
+mother(vitalina,vera).% vitalina is my grandmother
+father(idalino,joao).% joao is mt uncle
+mother(vitalina,joao).
+father(idalino,maria).% maria is my aunt
+mother(vitalina,maria).
+father(atico,nayara).
+mother(vera,nayara).
+father(atico,nagyla).
+mother(vera,nagyla).
+male(leonildo).
+female(ilza).
+male(atico).
+male(carlos).
+female(katia).
+male(idalino).
+female(vitalina).
+female(vera).
+female(maria).
+male(joao).
+female(nayara).
+female(nagyla).
+
+
+?- sister(X,nayara).
+
+X = nagyla ;
+
+X = nagyla ;
+
+No
+
+?- brother(X,nayara).
+
+No
+
+Yes
+[trace]  ?- sister(X,vera).
+   Call:  (  7) sister(_G309, vera) ? creep
+   Call:  (  8) progenitor(_L141, _G309) ? creep
+   Call:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(leonildo, atico) ? creep
+   Exit:  (  8) progenitor(leonildo, atico) ? creep
+   Call:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) father(leonildo, vera) ? creep
+   Fail:  (  9) father(leonildo, vera) ? creep
+   Redo:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  8) progenitor(leonildo, vera) ? creep
+   Redo:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(leonildo, carlos) ? creep
+   Exit:  (  8) progenitor(leonildo, carlos) ? creep
+   Call:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) father(leonildo, vera) ? creep
+   Fail:  (  9) father(leonildo, vera) ? creep
+   Redo:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  8) progenitor(leonildo, vera) ? creep
+   Redo:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(leonildo, katia) ? creep
+   Exit:  (  8) progenitor(leonildo, katia) ? creep
+   Call:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) father(leonildo, vera) ? creep
+   Fail:  (  9) father(leonildo, vera) ? creep
+   Redo:  (  8) progenitor(leonildo, vera) ? creep
+   Call:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  9) mother(leonildo, vera) ? creep
+   Fail:  (  8) progenitor(leonildo, vera) ? creep
+   Redo:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(idalino, vera) ? creep
+   Exit:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  9) father(idalino, vera) ? creep
+   Exit:  (  9) father(idalino, vera) ? creep
+   Exit:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  8) female(vera) ? creep
+   Exit:  (  8) female(vera) ? creep
+ ^ Call:  (  8) not vera==vera ? creep
+   Call:  (  9) vera==vera ? creep
+   Exit:  (  9) vera==vera ? creep
+ ^ Fail:  (  8) not vera==vera ? creep
+   Redo:  (  9) father(idalino, vera) ? creep
+   Fail:  (  9) father(idalino, vera) ? creep
+   Redo:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  9) mother(idalino, vera) ? creep
+   Fail:  (  9) mother(idalino, vera) ? creep
+   Fail:  (  8) progenitor(idalino, vera) ? creep
+   Redo:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(idalino, joao) ? creep
+   Exit:  (  8) progenitor(idalino, joao) ? creep
+   Call:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  9) father(idalino, vera) ? creep
+   Exit:  (  9) father(idalino, vera) ? creep
+   Exit:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  8) female(joao) ? creep
+   Fail:  (  8) female(joao) ? creep
+   Redo:  (  9) father(idalino, vera) ? creep
+   Fail:  (  9) father(idalino, vera) ? creep
+   Redo:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  9) mother(idalino, vera) ? creep
+   Fail:  (  9) mother(idalino, vera) ? creep
+   Fail:  (  8) progenitor(idalino, vera) ? creep
+   Redo:  (  9) father(_L141, _G309) ? creep
+   Exit:  (  9) father(idalino, maria) ? creep
+   Exit:  (  8) progenitor(idalino, maria) ? creep
+   Call:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  9) father(idalino, vera) ? creep
+   Exit:  (  9) father(idalino, vera) ? creep
+   Exit:  (  8) progenitor(idalino, vera) ? creep
+   Call:  (  8) female(maria) ? creep
+   Exit:  (  8) female(maria) ? creep
+ ^ Call:  (  8) not maria==vera ? creep
+   Call:  (  9) maria==vera ? creep
+   Fail:  (  9) maria==vera ? creep
+ ^ Exit:  (  8) not maria==vera ? creep
+   Exit:  (  7) sister(maria, vera) ? creep
+
+X = maria
+
+
+?- grandfather(X,nagyla).
+
+X = leonildo ;
+
+X = idalino ;
+
+No
+
